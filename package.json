@@ -1,0 +1,29 @@
+{
+  "name": "git-captain",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Makes handling multiple Git Repos for the same project easier.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "Git-Captain"
+  },
+  "author": "Joe Tavarez",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "http": "0.0.0",
+    "http-node": "^1.2.0",
+    "pug": "2.0.3",
+    "js2xmlparser": "^3.0.0",
+    "mongoose": "^5.2.2",
+    "path": "^0.12.7",
+    "request": "^2.87.0",
+    "xml2js": "^0.4.19",
+    "dotenv": "latest"
+  }
+}
