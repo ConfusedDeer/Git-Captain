@@ -289,13 +289,13 @@ Authors
 =======
 * `ConfusedDeer <https://github.com/ConfusedDeer>`_ — created Git-Captain.
 
-Contributions
-=============
+Contributions and Special Thanks
+================================
 * `j4p4n <https://openclipart.org/detail/282062/titanic-captain>`_ — For the "Titanic Captain" image, which is obtained from `openclipart.org <https://openclipart.org>`_  and used freely under the `Creative Commons Zero 1.0 License <https://creativecommons.org/publicdomain/zero/1.0/>`_
 
-Special Thanks
-==============
-* `Shining Light Productions <https://slproweb.com/products/Win32OpenSSL.html>`_ — For the OpenSSL MSI installer
+* `CrunchyFerrett <https://github.com/CrunchyFerrett>`_ — For help with the early stages of front-end creation.
+
+* `Shining Light Productions <https://slproweb.com/products/Win32OpenSSL.html>`_ — For the OpenSSL MSI installer.
 
 Possible future updates
 =======================
