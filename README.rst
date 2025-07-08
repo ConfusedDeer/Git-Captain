@@ -227,8 +227,13 @@ Open port 3000 and port 443 to allow calls through firewall
 Forward all calls to port 443 to port 3000 using windows Netsh
 --------------------------------------------------------------
     Prerequisite: IPv6 must be installed. 
-    You can verify if IPv6 is installed by opening network and sharing,
-    clicking on your connection, properties, and verifying if "Internet Protocol Version 6 (TCP/IPv6) is check-marked.
+    You can verify if IPv6 is installed by opening network and sharing in Control Panel > Network and Sharing Center.
+      - Go to Control Panel > Network and Sharing Center.
+      - Click Change adapter settings.
+      - Right-click your active network adapter and choose Properties.
+      - Look for Internet Protocol Version 6 (TCP/IPv6) in the list.
+      - If it’s checked ✅, IPv6 is installed and enabled.
+      - If it’s unchecked ❌, it’s installed but disabled.
     
 1. We will user three basic commands using Netsh to allow us to ADD, DELETE, or DISPLAY a list of port-forwarding rules.
    
