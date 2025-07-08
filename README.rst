@@ -108,7 +108,7 @@ Create a self-signed certificate (For SSL/HTTPS)
 
     d. If you don't want this security warning to occur, purchase a CA signed and issued certificate.
 
-    e. Install OpenSSL: Windows Installer. I use the "OpenSSL v1.1.1a Light" MSI (Experimental) the following site: https://slproweb.com/products/Win32OpenSSL.html
+    e. Install OpenSSL: Windows Installer. I use the "OpenSSL Light" MSI (Experimental) the following site: https://slproweb.com/products/Win32OpenSSL.html
 
     f. Once OpenSSL is installed, find the OpenSSL BIN directory (example: C:\\Program Files\\OpenSSL-Win64\\bin) and in an ADMINISTRATOR CMD line, run the following command: ``openssl req -nodes -new -x509 -keyout theKey.key -out theCert.cert`` and it will prompt with various questions to create your SSL key and certificate. Once the questions are complete, you should have now two new files 'theCert.cert' and 'theKey.key' in your bin directory (C:\\Program Files\\OpenSSL-Win64\\bin).
 
