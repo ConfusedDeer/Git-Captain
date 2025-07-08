@@ -257,7 +257,7 @@ Forward all calls to port 443 to port 3000 using windows Netsh
    
 6. If you made a mistake, delete the rule and add it once again using the delete and add commands in previous step.
    
-7. Open Windows Services, find "IP Helper", look at the properties, set the "Startup type:" to 'Automatic', click 'Start', and click the 'OK' button.  Open windows Task Manager and go to the services tab, find the service named 'iphlpsvc' (description: "IP Helper") and verify it's running. For the port-forwarding to work the iphlpsvc must be running.
+7. In Windows Search, search for 'Services', in the list of services find "IP Helper", look at the service properties (right-click->properties), set the "Startup type:" to 'Automatic', click 'Start', and click the 'OK' button.  Open windows Task Manager and go to the services tab, find the service named 'iphlpsvc' (description: "IP Helper") and verify it's running. For the port-forwarding to work the iphlpsvc must be running.
    
 8. Open a browser window INSIDE your server and type in [your IPv4 Address] in the URL (without 3000) and your port 443 call should automatically be forwarded to port 3000, thus displaying the Git-Captain login page, which confirms the netsh command to forward all port 443 calls to port 3000.
 
