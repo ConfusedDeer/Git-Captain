@@ -1,6 +1,5 @@
-const gitPortEndPoint = '[your server domain or ip address here] for example https://awsMyserver.com'
-
-var oAuthToken,
+var gitPortEndPoint = '', // Will be set from server configuration
+    oAuthToken,
     repoCount = 0,
     logNumber = 0,
     repoCountForDelete = 0,
@@ -19,12 +18,14 @@ var modalSpinner,
 
 
 function getUserName() {
-
+    var token = oAuthToken.replace("access_token=", "").replace("&scope=repo&token_type=bearer", "");
+    
     makeCall(
         getUserNameResponse,
-        "https://api.github.com/user?" + oAuthToken,
+        "https://api.github.com/user",
         "GET",
-        null
+        null,
+        token
     );
 }
 
@@ -145,6 +146,7 @@ function isGitCaptainUp(isLoginScreen) {
                 clientID = data.clientID;
                 orgName = data.orgName;
                 timeOutInMinutes = data.clientTimeout;
+                gitPortEndPoint = data.gitPortEndPoint; // Set from server configuration
                 if (isLoginScreen) {
                     checkGitHubStatus();
                 }
@@ -231,16 +233,22 @@ function setTimeoutTimer() {
     }, timeOutInMinutes * 60 * 1000);
 }
 
-function makeCall(callback, url, method, params) {
+function makeCall(callback, url, method, params, token) {
     var _url = url;
     var _method = method;
+    var headers = {};
+    
+    // Add authorization header if token is provided
+    if (token) {
+        headers['Authorization'] = 'token ' + token;
+    }
 
     switch (method) {
         case "GET":
-
             $.ajax({
                 url: _url,
                 type: _method,
+                headers: headers,
                 success: callback,
                 error: callback,
                 async: true
@@ -251,6 +259,7 @@ function makeCall(callback, url, method, params) {
             $.ajax({
                 url: _url,
                 type: _method,
+                headers: headers,
                 success: callback,
                 error: callback,
                 data: params
@@ -261,6 +270,7 @@ function makeCall(callback, url, method, params) {
             $.ajax({
                 url: _url,
                 type: _method,
+                headers: headers,
                 success: callback,
                 error: callback,
                 data: params

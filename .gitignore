@@ -169,3 +169,7 @@ fabric.properties
 
 # .env file should never be committed
 *.env
+
+# Exclude the following files from being committed
+*.cert
+*.key

@@ -57,7 +57,7 @@ function createBranches(repoName, branchToCreate, fromBranch, selectedRepos) {
             branchRef: fromBranch,
             newBranch: branchToCreate,
             repo: repoName,
-            token: oAuthToken
+            token: oAuthToken.replace("access_token=", "").replace("&scope=repo&token_type=bearer", "")
         };
 
     makeCall(callback, './gitCaptain/createBranches', 'POST', params)
@@ -107,7 +107,7 @@ function searchPullRequestsInAllRepos(repoNameToSearch, branchToSearchFor, state
             state: stateOfPullRequest,
             prBaseBranch: branchToSearchFor,
             repo: repoNameToSearch,
-            token: oAuthToken
+            token: oAuthToken.replace("access_token=", "").replace("&scope=repo&token_type=bearer", "")
         };
 
     makeCall(callback, './gitCaptain/searchForPR', 'POST', params)
@@ -152,7 +152,7 @@ function searchBranchesInAllRepos(repoNameToSearch, branchToSearchFor, arrayOfRe
         {
             searchForBranch: branchToSearchFor,
             repo: repoNameToSearch,
-            token: oAuthToken
+            token: oAuthToken.replace("access_token=", "").replace("&scope=repo&token_type=bearer", "")
         };
 
     makeCall(callback, './gitCaptain/searchForBranch', 'POST', params)
@@ -206,7 +206,7 @@ function deleteBranchFromAllRepos(repoNameForDelete, branchToDelete,arrayOfRepos
             {
                 deleteBranch: branchToDelete,
                 repo: repoNameForDelete,
-                token: oAuthToken
+                token: oAuthToken.replace("access_token=", "").replace("&scope=repo&token_type=bearer", "")
             };
 
         makeCall(callback, './gitCaptain/deleteBranches', 'DELETE', params)

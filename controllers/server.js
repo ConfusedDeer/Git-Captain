@@ -53,14 +53,15 @@ app.post('/:appName?/:webServ?', function (req, res) {
     if ((appName === 'gitCaptain') && (webServ === 'createBranches')) //post (uses body).
     {
 
-        var urlForCreate = gitHubAPIendpoint + "/repos/" + orgName + "/" + req.body.repo + "/branches/" + req.body.branchRef + "?" + req.body.token;
+        var urlForCreate = gitHubAPIendpoint + "/repos/" + orgName + "/" + req.body.repo + "/branches/" + req.body.branchRef;
 
         // noinspection JSDuplicatedDeclaration
         var options = {
             method: 'GET',
             url: urlForCreate,
             headers: {
-                'User-Agent': 'request'
+                'User-Agent': 'request',
+                'Authorization': 'token ' + req.body.token.replace("access_token=", "").replace("&scope=repo&token_type=bearer", "")
             }
         };
 
@@ -69,14 +70,15 @@ app.post('/:appName?/:webServ?', function (req, res) {
 
                 var myJSONobjRef = JSON.parse(response.body);
 
-                var urlForBranches = gitHubAPIendpoint + "/repos/" + orgName + "/" + req.body.repo + "/git/refs?" + req.body.token;
+                var urlForBranches = gitHubAPIendpoint + "/repos/" + orgName + "/" + req.body.repo + "/git/refs";
 
                 // noinspection JSUnresolvedVariable
                 var options = {
                     method: 'POST',
                     url: urlForBranches,
                     headers: {
-                        'User-Agent': 'request'
+                        'User-Agent': 'request',
+                        'Authorization': 'token ' + req.body.token.replace("access_token=", "").replace("&scope=repo&token_type=bearer", "")
                     },
                     body: JSON.stringify({
                         ref: "refs/heads/" + req.body.newBranch,
@@ -135,7 +137,7 @@ app.post('/:appName?/:webServ?', function (req, res) {
     else if ((appName === 'gitCaptain') && (webServ === 'searchForBranch')) //post (uses body).
     {
 
-        var urlForSearch = gitHubAPIendpoint + "/repos/" + orgName + "/" + req.body.repo + "/branches/" + req.body.searchForBranch + "?" + req.body.token;
+        var urlForSearch = gitHubAPIendpoint + "/repos/" + orgName + "/" + req.body.repo + "/branches/" + req.body.searchForBranch;
 
 
         // noinspection JSDuplicatedDeclaration
@@ -143,7 +145,8 @@ app.post('/:appName?/:webServ?', function (req, res) {
             method: 'GET',
             url: urlForSearch,
             headers: {
-                'User-Agent': 'request'
+                'User-Agent': 'request',
+                'Authorization': 'token ' + req.body.token.replace("access_token=", "").replace("&scope=repo&token_type=bearer", "")
             }
         };
 
@@ -161,14 +164,15 @@ app.post('/:appName?/:webServ?', function (req, res) {
 
     else if ((appName === 'gitCaptain') && (webServ === 'searchForPR')) //create Branches
     {
-        var urlForPRsearch = gitHubAPIendpoint + "/repos/" + orgName + "/" + req.body.repo + "/pulls?" + "state=" + req.body.state + "&base=" + req.body.prBaseBranch + "&" + req.body.token;
+        var urlForPRsearch = gitHubAPIendpoint + "/repos/" + orgName + "/" + req.body.repo + "/pulls?" + "state=" + req.body.state + "&base=" + req.body.prBaseBranch;
 
         // noinspection JSDuplicatedDeclaration
         var options = {
             method: 'GET',
             url: urlForPRsearch,
             headers: {
-                'User-Agent': 'request'
+                'User-Agent': 'request',
+                'Authorization': 'token ' + req.body.token.replace("access_token=", "").replace("&scope=repo&token_type=bearer", "")
             }
         };
 
@@ -211,14 +215,15 @@ app.post('/:appName?/:webServ?', function (req, res) {
 
     else if ((appName === 'gitCaptain') && (webServ === 'searchForRepos')) //create Branches
     {
-        var urlForRepoSearch = gitHubAPIendpoint + "/user/repos?" + req.body.token;
+        var urlForRepoSearch = gitHubAPIendpoint + "/user/repos";
 
         // noinspection JSDuplicatedDeclaration
         var options = {
             method: 'GET',
             url: urlForRepoSearch,
             headers: {
-                'User-Agent': 'request'
+                'User-Agent': 'request',
+                'Authorization': 'token ' + req.body.token.replace("access_token=", "").replace("&scope=repo&token_type=bearer", "")
             }
         };
 
@@ -250,13 +255,14 @@ app.delete('/:appName?/:webServ?', function (req, res) { //delete
     var webServ = String(req.params.webServ);
 
     if ((appName === 'gitCaptain') && (webServ === 'deleteBranches')) {
-        var urlForDelete = gitHubAPIendpoint + "/repos/" + orgName + "/" + req.body.repo + "/git/refs/heads/" + req.body.deleteBranch + "?" + req.body.token;
+        var urlForDelete = gitHubAPIendpoint + "/repos/" + orgName + "/" + req.body.repo + "/git/refs/heads/" + req.body.deleteBranch;
 
         var options = {
             method: 'DELETE',
             url: urlForDelete,
             headers: {
-                'User-Agent': 'request'
+                'User-Agent': 'request',
+                'Authorization': 'token ' + req.body.token.replace("access_token=", "").replace("&scope=repo&token_type=bearer", "")
             }
         };
 
@@ -307,6 +313,7 @@ app.get('/:appName?/:webServ?', function (req, res) {
                 "clientID": client_id,
                 "orgName": orgName,
                 "clientTimeout": clientTimeOut,
+                "gitPortEndPoint": config.web.gitPortEndPoint
             }));
     }
 
