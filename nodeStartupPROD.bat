@@ -16,3 +16,8 @@ start cmd.exe @cmd /c "net start iphlpsvc"
 ping -n 5 127.0.0.1>nul
 CD C:\Git-Captain\controllers\
 forever start server.js
+popd
+echo.
+echo === Server launched successfully ===
+echo Press any key to close this window...
+pause > nul
