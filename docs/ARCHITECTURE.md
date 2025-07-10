@@ -142,67 +142,6 @@ graph TB
     class Retry,Fallback,Restart,Alert recovery
 ```
 
-## 🔄 Maintenance & Updatesin Control]
-            RateLimit[⏱️ Rate Limiting<br/>DDoS Protection]
-            Auth[🔐 OAuth Authentication<br/>GitHub Integration]
-        end
-        
-        subgraph "Application Services"
-            Router[📍 Express Router<br/>Endpoint Management]
-            Validation[✅ Input Validation<br/>express-validator]
-            Logger[📝 Winston Logger<br/>Structured Logging]
-            HttpClient[🌐 HTTP Client<br/>Axios-based]
-        end
-    end
-
-    subgraph "External Services"
-        GitHub[🐙 GitHub API<br/>api.github.com<br/>OAuth & Repository APIs]
-    end
-
-    subgraph "Storage & Assets"
-        Logs[📄 Application Logs<br/>Rotating Files]
-        Static[📁 Static Assets<br/>HTML/CSS/JS]
-        Certs[🔒 SSL Certificates<br/>HTTPS Security]
-    end
-
-    User -->|Interacts| Browser
-    Browser -->|HTTPS/443| Proxy
-    Proxy -->|HTTPS/3000| App
-    
-    App --> Helmet
-    App --> CORS
-    App --> RateLimit
-    App --> Auth
-    
-    App --> Router
-    App --> Validation
-    App --> Logger
-    App --> HttpClient
-    
-    HttpClient -->|API Calls| GitHub
-    Auth -->|OAuth Flow| GitHub
-    
-    Logger -->|Writes| Logs
-    App -->|Serves| Static
-    App -->|Uses| Certs
-
-    classDef client fill:#e1f5fe,stroke:#01579b,stroke-width:2px
-    classDef infra fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
-    classDef app fill:#e8f5e8,stroke:#1b5e20,stroke-width:2px
-    classDef security fill:#fff3e0,stroke:#e65100,stroke-width:2px
-    classDef service fill:#f1f8e9,stroke:#33691e,stroke-width:2px
-    classDef external fill:#fce4ec,stroke:#880e4f,stroke-width:2px
-    classDef storage fill:#f5f5f5,stroke:#424242,stroke-width:2px
-
-    class User,Browser client
-    class Proxy infra
-    class App app
-    class Helmet,CORS,RateLimit,Auth security
-    class Router,Validation,Logger,HttpClient service
-    class GitHub external
-    class Logs,Static,Certs storage
-```
-
 ## 🔄 Request Flow Diagram
 
 ```mermaid
@@ -393,8 +332,8 @@ graph TD
     subgraph "External APIs"
         OAuth[🔑 GitHub OAuth API<br/>https://github.com/login/oauth]
         RepoAPI[📚 Repository API<br/>GET /user/repos]
-        BranchAPI[🌿 Git References API<br/>GET/POST/DELETE /repos/{owner}/{repo}/git/refs]
-        PRAPI[🔄 Pull Requests API<br/>GET /repos/{owner}/{repo}/pulls]
+        BranchAPI[🌿 Git References API<br/>GET/POST/DELETE /repos/owner/repo/git/refs]
+        PRAPI[🔄 Pull Requests API<br/>GET /repos/owner/repo/pulls]
     end
 
     UI --> AJAX
@@ -561,16 +500,6 @@ sequenceDiagram
     API->>A: 11. API response
     A->>B: 12. Formatted response
     B->>U: 13. Display results
-
-    classDef user fill:#e1f5fe
-    classDef github fill:#f6f8fa
-    classDef app fill:#e8f5e8
-    classDef api fill:#ffeaa7
-
-    class U,B user
-    class G github
-    class A app
-    class API api
 ```
 
 ## 🛡️ Enhanced Security Flow
@@ -884,7 +813,7 @@ graph TB
 - Suspicious request patterns
 - SSL/TLS handshake failures
 
-## � Maintenance & Updates
+## 🔄 Maintenance & Updates
 
 ### Regular Maintenance Tasks
 - **Weekly**: Review security logs for anomalies
