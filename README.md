@@ -317,6 +317,16 @@ netsh advfirewall firewall add rule name="Git-Captain" dir=in action=allow proto
 - ✅ **Complete README overhaul** (this document)
 - ✅ **Enterprise deployment guide** (docs/DEPLOYMENT.md)
 - ✅ **Technical change documentation** (MODULE_UPDATES.md)
+- ✅ **Architecture documentation with rich diagrams** (docs/ARCHITECTURE.md)
+- ✅ **Mermaid diagram collection** (docs/ARCHITECTURE_MERMAID.md)
+
+#### 📊 **Visual Architecture**
+All documentation now includes rich Mermaid diagrams that render beautifully in both VS Code and GitHub:
+- 🏗️ **System Architecture**: High-level component overview
+- 🔄 **Request Flow**: OAuth and API call sequences  
+- ⚡ **Error Handling**: Comprehensive error management flows
+- 🛡️ **Security Stack**: Middleware and protection layers
+- 🔧 **Technology Stack**: Complete dependency mapping
 
 ---
 

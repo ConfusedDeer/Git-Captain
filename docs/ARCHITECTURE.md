@@ -22,7 +22,36 @@ graph TB
         
         subgraph "Security Middleware Stack"
             Helmet[🛡️ Helmet<br/>Security Headers]
-            CORS[🔗 CORS<br/>Cross-O- SSL/TLS handshake failures
+            CORS[🔗 CORS<br/>Cross-Origin Resource Sharing]
+            RateLimit[⏱️ Rate Limiting<br/>Request throttling]
+            Validator[✅ Input Validation<br/>Schema validation]
+            Auth[🔐 Authentication<br/>GitHub OAuth 2.0]
+        end
+    end
+
+    subgraph "External Services"
+        GitHub[🐙 GitHub API<br/>REST & GraphQL<br/>api.github.com]
+        DB[(💾 Data Storage<br/>File System<br/>Logs & Cache)]
+    end
+
+    User --> Browser
+    Browser --> Proxy
+    Proxy --> App
+    App --> Helmet
+    Helmet --> CORS
+    CORS --> RateLimit
+    RateLimit --> Validator
+    Validator --> Auth
+    Auth --> GitHub
+    App --> DB
+
+    style User fill:#e1f5fe
+    style Browser fill:#f3e5f5
+    style Proxy fill:#fff3e0
+    style App fill:#e8f5e8
+    style GitHub fill:#f1f8ff
+    style DB fill:#fce4ec
+```
 
 ## 🔧 Error Handling & Recovery Architecture
 
