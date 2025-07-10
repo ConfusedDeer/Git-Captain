@@ -27,7 +27,7 @@ config.web.certificatePath = process.env.certificatePath;
 
 // Security configuration
 config.security.rateLimitWindow = 60000; // 1 minute
-config.security.rateLimitMax = 60; // Production-friendly rate limit
+config.security.rateLimitMax = 600; // Production-friendly rate limit
 config.security.sessionTimeout = 1800000; // 30 minutes
 
 // Application configuration

@@ -52,10 +52,10 @@ const strictLimiter = createRateLimiter(
     'Too many sensitive operations from this IP, please try again later'
 );
 
-// Auth rate limiter - much more permissive for development
+// Auth rate limiter - more permissive for development/testing
 const authLimiter = createRateLimiter(
     300000, // 5 minutes
-    50, // 50 attempts per 5 minutes (increased from 20)
+    300, // 300 attempts per 5 minutes (increased for development)
     'Too many authentication attempts from this IP, please try again later'
 );
 
