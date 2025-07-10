@@ -150,27 +150,46 @@ Git-Captain implements enterprise-grade security measures:
 
 ---
 
-## 🏗️ Architecture
+## 🏗️ Architecture Overview
 
-### Backend Stack
-- **Runtime**: Node.js 18+
-- **Framework**: Express.js
-- **HTTP Client**: Axios (modern replacement for deprecated `request`)
-- **Security**: Helmet, CORS, express-rate-limit
-- **Validation**: express-validator + Joi
-- **Logging**: Winston structured logging
-- **Compression**: gzip compression middleware
+Git-Captain v2.0 features a modern, secure architecture built on Node.js and Express:
 
-### Frontend Stack
-- **UI**: Vanilla JavaScript + jQuery
-- **Styling**: Custom CSS with responsive design
-- **Icons**: Font Awesome
-- **AJAX**: jQuery with modern error handling
+```mermaid
+graph TB
+    User[👤 User] --> Browser[🌐 Browser]
+    Browser -->|HTTPS| Proxy[🔄 Reverse Proxy]
+    Proxy --> App[🚀 Git-Captain App<br/>Node.js + Express]
+    
+    App --> Security[🛡️ Security Layer<br/>Helmet + CORS + Rate Limiting]
+    App --> Auth[🔐 GitHub OAuth<br/>Authentication]
+    App --> API[🐙 GitHub API<br/>Repository Operations]
+    
+    App --> Logs[📄 Winston Logging]
+    App --> Static[📁 Static Assets]
 
-### Security Layer
+    classDef user fill:#e1f5fe
+    classDef app fill:#e8f5e8
+    classDef security fill:#fff3e0
+    classDef external fill:#fce4ec
+
+    class User,Browser user
+    class Proxy,App app
+    class Security,Auth security
+    class API,Logs,Static external
 ```
-Internet → Rate Limiter → CORS → Helmet → Input Validation → Application Logic
-```
+
+**Key Components:**
+- **Security-First Design**: Multiple layers of protection including rate limiting, input validation, and security headers
+- **OAuth Integration**: Seamless GitHub authentication with secure token handling
+- **Modern HTTP Client**: Axios-based client replacing deprecated request library
+- **Comprehensive Logging**: Winston-powered structured logging with rotation
+- **Production Ready**: Designed for scalability with PM2 process management
+
+📋 **Detailed Documentation:**
+- **[System Architecture](docs/ARCHITECTURE.md)** - Complete architecture with interactive Mermaid diagrams
+- **[Architecture Tools](docs/ARCHITECTURE_TOOLS.md)** - Guide to various diagramming tools for GitHub
+- **[Deployment Guide](docs/DEPLOYMENT.md)** - Production deployment instructions
+- **[Security Overview](docs/SECURITY.md)** - Security features and best practices
 
 ---
 
