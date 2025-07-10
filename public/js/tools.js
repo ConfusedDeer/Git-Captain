@@ -78,9 +78,10 @@ function populateArrayOfRepos() { //populateList(repoSetServer, "server");
         hideSpinner();
     }
 
+    var cleanToken = oAuthToken.replace("access_token=", "").replace("&scope=repo&token_type=bearer", "");
     var params =
         {
-            token: oAuthToken
+            token: cleanToken
         };
 
     makeCall(callback, './gitCaptain/searchForRepos', 'POST', params)

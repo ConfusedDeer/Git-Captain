@@ -1,4 +1,3 @@
-
 function prepareForBranchCreation() {
     var selectedRepos = [];
     repoCount = 0;
@@ -63,8 +62,16 @@ function createBranches(repoName, branchToCreate, fromBranch, selectedRepos) {
     makeCall(callback, './gitCaptain/createBranches', 'POST', params)
 }
 
-function prepareForPRSearch(arrayOfRepos) {
+function prepareForPRSearch() {
+    console.log('prepareForPRSearch called, arrayOfRepos:', arrayOfRepos);
+    // Check if repositories are loaded
+    if (!arrayOfRepos || arrayOfRepos.length === 0) {
+        alert("No repositories loaded. Please wait for repositories to load and try again.");
+        return;
+    }
+    
     var searchPRinputVal = $("#searchPRinput").val();
+    console.log('PR search input value:', searchPRinputVal);
     if (searchPRinputVal === '') {
         alert("Search branch field must be populated");
         hideSpinner();
@@ -72,21 +79,32 @@ function prepareForPRSearch(arrayOfRepos) {
     else {
         showSpinner();
         repoCountForPRSearch = 0;
+        console.log('Starting PR search for branch:', searchPRinputVal, 'in repos:', arrayOfRepos.length);
         searchPullRequestsInAllRepos(arrayOfRepos[0].name.toString(), searchPRinputVal.trim(), 'open',arrayOfRepos);
     }
 }
 function searchPullRequestsInAllRepos(repoNameToSearch, branchToSearchFor, stateOfPullRequest, arrayOfRepos) {
 
     function callback(data) {
+        console.log('PR search response for', repoNameToSearch, ':', data);
         if (data.statusCode === 200) {
             var pullRequests = JSON.parse(data.body);
+            console.log('Found', pullRequests.length, 'pull requests for', branchToSearchFor, 'in', repoNameToSearch);
 
-            for (var i = 0; i < pullRequests.length; i++) {
+            if (pullRequests.length > 0) {
+                for (var i = 0; i < pullRequests.length; i++) {
+                    logNumber += 1;
+                    // noinspection JSUnresolvedVariable
+                    addRowForPR(pullRequests[i].html_url, pullRequests[i].user.login, repoNameToSearch, branchToSearchFor, logNumber, orgName)
+                }
+            } else {
                 logNumber += 1;
-                // noinspection JSUnresolvedVariable
-                addRowForPR(pullRequests[i].html_url, pullRequests[i].user.login, repoNameToSearch, branchToSearchFor, logNumber, orgName)
+                addRow("No pull requests found for " + branchToSearchFor + " in " + repoNameToSearch, repoNameToSearch, branchToSearchFor, "NOT FOUND", logNumber, orgName);
             }
-
+        } else {
+            console.log('PR search error for', repoNameToSearch, 'status:', data.statusCode);
+            logNumber += 1;
+            addRow("Error searching for pull requests in " + repoNameToSearch, repoNameToSearch, branchToSearchFor, "ERROR", logNumber, orgName);
         }
 
         repoCountForPRSearch += 1;
