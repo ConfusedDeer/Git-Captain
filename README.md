@@ -141,11 +141,11 @@ Git-Captain implements enterprise-grade security measures:
 | Endpoint | Method | Description |
 |----------|--------|-------------|
 | `/gitCaptain/getToken` | GET/POST | OAuth token exchange |
-| `/gitCaptain/searchForRepos` | POST | Get organization repositories |
-| `/gitCaptain/createBranches` | POST | Create branches across repos |
-| `/gitCaptain/searchForBranch` | POST | Search for branches |
+| `/gitCaptain/searchForRepos` | POST | Search for all your organizations repositories |
+| `/gitCaptain/createBranches` | POST | Create same named branch across ALL your repos, for example, you need to create a branch named feature/newAwesomeBranch, it will create feature/newAwesomeBranch across ALL your repos |
+| `/gitCaptain/searchForBranch` | POST | Search for a specific branch across ALL your repos, for example, you need to find a branch named feature/newAwesomeBranch in all your repos, it will search for feature/newAwesomeBranch and display in which repos that branch exists|
 | `/gitCaptain/searchForPR` | POST | Find pull requests |
-| `/gitCaptain/deleteBranches` | DELETE | Delete branches |
+| `/gitCaptain/deleteBranches` | DELETE | Delete same named branch across ALL your repos, for example, you need to delete a branch named feature/newAwesomeBranch, it will delete any branch named feature/newAwesomeBranch across ALL your repos |
 | `/gitCaptain/checkGitHubStatus` | GET | GitHub API status |
 
 ---
